@@ -7,9 +7,9 @@
 # Email: pietro.marangon@gmail.com
 # SFTP function by unixfox
 
-create_backup() {
-  backup_path="/root"
+backup_path="/root"
 
+create_backup() {
   umask 177
 
   mysqldump --user=$user --password=$password --host=$host $db_name > $db_name-$d.sql
@@ -58,6 +58,7 @@ then
 
 create_backup
 
+cd $backup_path
 ftp -n -i $SERVER <<EOF
 user $USERNAME $PASSWORD
 binary
@@ -69,9 +70,10 @@ clean_backup
 
 elif [ $TYPE -eq 2 ]
 then
-cd $REMOTDIR
+cd $backup_path
 sftp $USERNAME@$SERVER
 $PASSWORD
+cd $REMOTDIR
 put $FILE
 exit
 echo 'Remote Backup Complete'
