@@ -12,14 +12,14 @@ backup_path="/root"
 create_backup() {
   umask 177
 
-  mysqldump --user=$user --password=$password --host=$host $db_name > $db_name-$d.sql
-
   FILE="$db_name-$d.sql"
+  mysqldump --user=$user --password=$password --host=$host $db_name > $FILE
+
   echo 'Backup Complete'
 }
 
 clean_backup() {
-  rm -f $backup_path/$db_name-$date.sql
+  rm -f $backup_path/$FILE.sql
   echo 'Local Backup Removed'
 }
 
@@ -52,22 +52,17 @@ TYPE=1
 ##############################
 
 d=$(date --iso)
+cd $backup_path
+create_backup
 
 if [ $TYPE -eq 1 ]
 then
-
-create_backup
-
-cd $backup_path
 ftp -n -i $SERVER <<EOF
 user $USERNAME $PASSWORD
 binary
 mput $FILE $REMOTDIR/$FILE
 quit
 EOF
-echo 'Remote Backup Complete'
-clean_backup
-
 elif [ $TYPE -eq 2 ]
 then
 cd $backup_path
@@ -75,9 +70,10 @@ sshpass -p $PASSWORD $USERNAME@$SERVER
 cd $REMOTDIR
 put $FILE
 exit
-echo 'Remote Backup Complete'
-clean_backup
 else
 echo 'Please select a valid type'
 fi
+
+echo 'Remote Backup Complete'
+clean_backup
 #END
