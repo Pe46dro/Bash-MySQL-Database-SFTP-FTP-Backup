@@ -18,7 +18,7 @@ If you have some problem open an issues on GitHub
 
 * Q: Why can't I start the script?
 
-    A: Try changing the files permission [link](http://www.cyberciti.biz/faq/how-to-use-chmod-and-chown-command/)
+    A: Make the file executable (chmod -x script.sh)
 
 
 * Q: Will this work on all linux distros?
