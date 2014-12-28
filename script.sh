@@ -5,7 +5,7 @@
 # Script by: Pietro Marangon
 # Skype: pe46dro
 # Email: pietro.marangon@gmail.com
-# SFTP function by unixfox
+# SFTP function by unixfox and Pe46dro
 
 backup_path="/root"
 
