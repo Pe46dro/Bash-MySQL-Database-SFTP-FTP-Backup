@@ -24,3 +24,7 @@ If you have some problem open an issues on GitHub
 * Q: Will this work on all linux distros?
 
     A: This script was tested on Ubuntu 12/14,Debian and Centos 6 and has worked whitout any problems
+    
+* Q: Why SFTP don't work?
+
+    A: You need to install "sshpass"
