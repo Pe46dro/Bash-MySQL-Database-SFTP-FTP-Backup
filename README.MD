@@ -27,4 +27,4 @@ If you have some problem open an issues on GitHub
     
 * Q: Why SFTP don't work?
 
-    A: You need to install "sshpass"
+    A: You need to install "sshpass" ( apt-get install sshpass )
