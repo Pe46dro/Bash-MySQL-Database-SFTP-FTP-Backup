@@ -5,7 +5,7 @@
 # Script by: Pietro Marangon
 # Skype: pe46dro
 # Email: pietro.marangon@gmail.com
-# SFTP function by unixfox
+# SFTP function by unixfox and Pe46dro
 
 backup_path="/root"
 
@@ -71,8 +71,7 @@ clean_backup
 elif [ $TYPE -eq 2 ]
 then
 cd $backup_path
-sftp $USERNAME@$SERVER
-$PASSWORD
+sshpass -p $PASSWORD $USERNAME@$SERVER
 cd $REMOTDIR
 put $FILE
 exit
