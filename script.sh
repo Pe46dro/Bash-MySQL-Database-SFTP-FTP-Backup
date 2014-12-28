@@ -71,8 +71,7 @@ clean_backup
 elif [ $TYPE -eq 2 ]
 then
 cd $backup_path
-sftp $USERNAME@$SERVER
-$PASSWORD
+sshpass -p $PASSWORD $USERNAME@$SERVER
 cd $REMOTDIR
 put $FILE
 exit
