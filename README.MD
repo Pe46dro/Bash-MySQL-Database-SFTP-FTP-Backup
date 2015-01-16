@@ -4,8 +4,8 @@
 A small script to upload backup tar to an external FTP server
 
 How it works:
-* You need to change "user,password,host,db_name" whit information of mysql database
-* You need to change "USERNAME,PASSWORD,SERVER" whit information of your server
+* You need to change "user,password,host,db_name" with information of mysql database
+* You need to change "USERNAME,PASSWORD,SERVER" with information of your server
 
 If you have some problem open an issues on GitHub
 
