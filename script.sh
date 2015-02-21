@@ -38,6 +38,7 @@ db_name="DATABASE NAME HERE"
 USERNAME="USERNAME HERE"
 PASSWORD="PASSWORD HERE"
 SERVER="IP HERE"
+PORT="SERVER PORT HERE"
 
 #Remote directory where the backup will be placed
 REMOTEDIR="./"
@@ -66,7 +67,7 @@ EOF
 elif [ $TYPE -eq 2 ]
 then
 cd $backup_path
-sshpass -p $PASSWORD $USERNAME@$SERVER
+sshpass -p $PASSWORD ssh -p $PORT $USERNAME@$SERVER
 cd $REMOTDIR
 put $FILE
 exit
