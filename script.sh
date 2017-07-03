@@ -12,14 +12,14 @@ backup_path="/root"
 create_backup() {
   umask 177
 
-  FILE="$db_name-$d.sql"
-  mysqldump --user=$user --password=$password --host=$host $db_name > $FILE
+  FILE="$db_name-$d.sql.gz"
+  mysqldump --user=$user --password=$password --host=$host $db_name | gzip --best > $FILE
 
   echo 'Backup Complete'
 }
 
 clean_backup() {
-  rm -f $backup_path/$FILE.sql
+  rm -f $backup_path/$FILE
   echo 'Local Backup Removed'
 }
 
@@ -61,7 +61,8 @@ then
 ftp -n -i $SERVER <<EOF
 user $USERNAME $PASSWORD
 binary
-mput $FILE $REMOTDIR/$FILE
+cd $REMOTEDIR
+mput $FILE
 quit
 EOF
 elif [ $TYPE -eq 2 ]
